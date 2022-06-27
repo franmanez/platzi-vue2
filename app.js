@@ -1,3 +1,31 @@
+Vue.component('CoinDetail', {
+  props: ['changePercent', 'title', 'img', 'name'],
+
+  data(){
+    return{
+      showPrices: false
+    }
+  },
+  methods:{
+    toggleShowPrices() {
+      this.showPrices = !this.showPrices
+      this.color = this.color.split('').reverse().join('')
+    }
+  },
+  template: `
+    <div>
+        <img v-on:mouseover="toggleShowPrices" v-on:mouseout="toggleShowPrices" v-bind:src="img" v-bind:alt="name">
+        <h1 v-bind:class="changePercent > 0 ? 'green' : 'red'">
+          {{title}}
+          <span v-if="changePercent > 0">👍</span>
+          <span v-else>👎</span>
+    
+          <span v-on:click="toggleShowPrices">{{showPrices ? '🙈' : '🐸'}}</span>
+        </h1>
+    </div>
+  `
+})
+
 
 new Vue({
   el: '#app',
