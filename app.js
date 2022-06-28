@@ -39,6 +39,9 @@ Vue.component('CoinDetail', {
         <input type="number" v-model="coin.value">
         <span>{{convertedValue}}</span>
     
+        <slot name="texto"></slot>
+        <slot name="link"></slot>
+    
         <ul v-show="showPrices">
           <li class="uppercase"
               v-bind:class="{orange: p.value == coin.price, red: p.value < coin.price, green: p.value > coin.price}" v-for="(p, i) in coin.pricesWithDays"
@@ -77,6 +80,15 @@ new Vue({
 
       color: 'f4f4f4',
     }
+  },
+
+
+  created(){
+    console.log("created")
+  },
+
+  mounted(){
+    console.log("mounted")
   },
 
 
